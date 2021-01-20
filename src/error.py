@@ -12,4 +12,8 @@ log = logging.getLogger(__name__)
 
 
 def handler(bot, update, error):
-    log.warning('Update "%s" caused error "%s"', update, error)
+    log.error('Update "%s" caused error "%s"', update, error)
+    update.message.reply_text(
+        text='<strong>error :(</strong>',
+        parse_mode=ParseMode.HTML)
+

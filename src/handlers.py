@@ -341,9 +341,13 @@ def MainConversationHandler():
 
 
             log.debug('Try to cut file "%s" to %s' % (filename, chat_data['length']))
-            song = AudioSegment.from_file(filename)
-            extract = song[src.utils.length_to_msec(length[0]):src.utils.length_to_msec(length[1])]
-            extract.export(filename, format="mp3")
+            try:
+                song = AudioSegment.from_file(filename)
+                extract = song[src.utils.length_to_msec(length[0]):src.utils.length_to_msec(length[1])]
+                extract.export(filename, format="mp3")
+            except:
+                return handle_error(bot, update, error_message='Failed to cut audio', url=chat_data['url'])
+
 
         # update status message
         bot.delete_message(chat_id=chat_id, message_id=status_msg.message_id)
