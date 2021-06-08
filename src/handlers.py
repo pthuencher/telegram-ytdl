@@ -98,7 +98,7 @@ def UpdateCommandHandler():
             return
         
         try:
-            resp = subprocess.check_output(['pip', 'install', 'youtube-dl', '--upgrade'])
+            resp = subprocess.check_output(['pip3.5', 'install', 'youtube-dl', '--upgrade'])
             resp = resp.decode('utf-8')
             update.message.reply_text(
                 text=resp,
@@ -214,7 +214,7 @@ def MainConversationHandler():
                 'thumb': info_dict['thumbnail'] if 'thumbnail' in info_dict else '',
             }
         except (youtube_dl.utils.DownloadError, youtube_dl.utils.ExtractorError) as e:
-            return handle_error(bot, update, error_message='given url is invalid or from an unsupported source', url=url)
+            return handle_error(bot, update, error_message='something went wrong. try to /update to newest youtube-dl version.', url=url)
 
 
         # create format keyboard
