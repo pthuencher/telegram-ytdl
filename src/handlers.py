@@ -214,7 +214,7 @@ def MainConversationHandler():
                 'thumb': info_dict['thumbnail'] if 'thumbnail' in info_dict else '',
             }
         except (youtube_dl.utils.DownloadError, youtube_dl.utils.ExtractorError) as e:
-            return handle_error(bot, update, error_message='something went wrong. try to /update to newest youtube-dl version.', url=url)
+            return handle_error(bot, update, error_message='something went wrong. consider to /update to the most recent youtube-dl version.\n\n%s' % e, url=url)
 
 
         # create format keyboard
